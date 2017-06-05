@@ -6,19 +6,19 @@ A playground showcasing the use of generics to create map and flatMap functions 
 
 extension Array {
 
-	/// A map function that iterates over and transforms each element of an array but removes any duplicates from the resulting array, so elements that match will not be added twice.
-	func dedupMap<T: Equatable>(_ transform: (Element) -> T) -> [T] {
-		var result = [T]()
+  /// A map function that iterates over and transforms each element of an array but removes any duplicates from the resulting array, so elements that match will not be added twice.
+  func dedupMap<T: Equatable>(_ transform: (Element) -> T) -> [T] {
+    var result = [T]()
 
-		for x in self {
-			if !result.contains(transform(x)) {
-				result.append(transform(x))
-			}
-		}
-		return result
+	for x in self {
+	  if !result.contains(transform(x)) {
+	    result.append(transform(x))
+	  }
 	}
+	return result
+  }
 
-	/// A flatmap function that iterates over and transforms each element of an array, removes any transformed values that are nil, but also removes any duplicates from the resulting array, so elements that match will not be added twice.
+/// A flatmap function that iterates over and transforms each element of an array, removes any transformed values that are nil, but also removes any duplicates from the resulting array, so elements that match will not be added twice.
 	func dedupFlatMap<T: Equatable>(_ transform: (Element) throws -> T?) rethrows -> [T] {
 		var result = [T]()
 
@@ -77,6 +77,7 @@ print("The items in the following array are duplicate names: \(duplicateNames)")
 
 
 // Now we'll try with a more complex transformation such as finding the highest factor of an integer
+
 /**
 This function finds and returns the highest factor (excluding itself) of any positive integer.
 If a negative or zero integer is passed in the function will return -1 as an error state.
