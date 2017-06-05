@@ -6,7 +6,8 @@ import UIKit
 extension Array {
 	
 	/// A map function that iterates over and transforms each element of an array but removes any duplicates from the resulting array, so elements that match will not be added twice.
-	func dedupMap<T>(_ transform: (Element) -> T) -> [T] where T: Equatable{
+	
+	func dedupMap<T>(_ transform: (Element) -> T) -> [T] where T: Equatable {
 		var result = [T]()
 		
 		for x in self {
@@ -45,6 +46,7 @@ extension Array {
 		}
 		return dups.sorted()
 	}
+	
 }
 
 // **********************************************************
