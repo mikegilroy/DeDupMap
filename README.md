@@ -47,9 +47,11 @@ extension Array {
   }
 }
 
+
 // **********************************************************
 // ****************** Testing deDupMap **********************
 // **********************************************************
+
 // A list of random integers that contains no duplicates
 let numbers = [1,2,3,4,5,6,7,8,9, 10, 11, 12,13, 21,33, 126]
 
@@ -113,7 +115,6 @@ let highestFactors = numbers.dedupMap(highestFactor)
 let highestCommonFactors = numbers.dupMap(highestFactor)
 
 
-
 // **********************************************************
 // ****************** Testing deDupFlatMap ******************
 // **********************************************************
@@ -122,6 +123,7 @@ let highestCommonFactors = numbers.dupMap(highestFactor)
 let possibleIntegers = ["one", "2", "3", nil, "four", "5", "5", nil]
 
 // Lets create a new failable initialiser for Int that accepts an optional String as a parameter
+
 extension Int {
 
   /// Initialises an Int from an optional String or else returns nil
@@ -130,7 +132,6 @@ extension Int {
     self.init(text)
   }
 }
-
 
 // We can now find the deduped and non-nil integer values from the possibleIntegers array using dedupFlatMap
 let integers = possibleIntegers.dedupFlatMap { Int($0) }
