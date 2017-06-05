@@ -18,34 +18,34 @@ extension Array {
 	return result
   }
 
-/// A flatmap function that iterates over and transforms each element of an array, removes any transformed values that are nil, but also removes any duplicates from the resulting array, so elements that match will not be added twice.
-	func dedupFlatMap<T: Equatable>(_ transform: (Element) throws -> T?) rethrows -> [T] {
-		var result = [T]()
+  /// A flatmap function that iterates over and transforms each element of an array, removes any transformed values that are nil, but also removes any duplicates from the resulting array, so elements that match will not be added twice.
+  func dedupFlatMap<T: Equatable>(_ transform: (Element) throws -> T?) rethrows -> [T] {
+    var result = [T]()
 
-		for x in self {
-			if let transformed = try transform(x),
-			!result.contains(transformed) {
-				result.append(transformed)
-			}
-		}
-		return result
-	}
+    for x in self {
+      if let transformed = try transform(x),
+      !result.contains(transformed) {
+        result.append(transformed)
+      }
+    }
+    return result
+  }
 
-	/// A map function that iterates over and transforms each element of an array but only returns the duplicates from the resulting array.
-	func dupMap<T where T: Comparable, T: Hashable>(_ transform: (Element) -> T) -> [T] {
-		var nonDups = Set<T>()
-		var dups = Set<T>()
+  /// A map function that iterates over and transforms each element of an array but only returns the duplicates from the resulting array.
+  func dupMap<T where T: Comparable, T: Hashable>(_ transform: (Element) -> T) -> [T] {
+    var nonDups = Set<T>()
+    var dups = Set<T>()
 
-		for x in self {
-			let transformed = transform(x)
-			if nonDups.contains(transformed) {
-				dups.insert(transformed)
-			} else {
-				nonDups.insert(transformed)
-			}
-		}
-		return dups.sorted()
-	}
+    for x in self {
+      let transformed = transform(x)
+      if nonDups.contains(transformed) {
+        dups.insert(transformed)
+      } else {
+        nonDups.insert(transformed)
+      }
+    }
+    return dups.sorted()
+  }
 }
 
 // **********************************************************
@@ -83,20 +83,20 @@ This function finds and returns the highest factor (excluding itself) of any pos
 If a negative or zero integer is passed in the function will return -1 as an error state.
 */
 func highestFactor(of number: Int) -> Int {
-	if number <= 0 {
-		return -1
-	}
+  if number <= 0 {
+    return -1
+  }
 
-	if number < 2 {
-		return 1
-	} else {
-		for x in 2...number {
-			if number % x == 0 {
-				return number / x
-			}
-		}
-	}
-	return 1
+  if number < 2 {
+    return 1
+  } else {
+    for x in 2...number {
+      if number % x == 0 {
+        return number / x
+      }
+    }
+  }
+  return 1
 }
 
 // Let's test our highest factor function works as expected
@@ -118,17 +118,18 @@ let highestCommonFactors = numbers.dupMap(highestFactor)
 // **********************************************************
 // ****************** Testing deDupFlatMap ******************
 // **********************************************************
+
 /// A list of optional strings that represent possible integers and also includes some duplicates
 let possibleIntegers = ["one", "2", "3", nil, "four", "5", "5", nil]
 
 // Lets create a new failable initialiser for Int that accepts an optional String as a parameter
 extension Int {
 
-	/// Initialises an Int from an optional String or else returns nil
-	init?(_ text: String?) {
-		guard let text = text else { return nil }
-		self.init(text)
-	}
+  /// Initialises an Int from an optional String or else returns nil
+  init?(_ text: String?) {
+    guard let text = text else { return nil }
+    self.init(text)
+  }
 }
 
 
