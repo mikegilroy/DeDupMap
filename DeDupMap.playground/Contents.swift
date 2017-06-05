@@ -6,7 +6,7 @@ import UIKit
 extension Array {
 	
 	/// A map function that iterates over and transforms each element of an array but removes any duplicates from the resulting array, so elements that match will not be added twice.
-	func dedupMap<T: Equatable>(_ transform: (Element) -> T) -> [T] {
+	func dedupMap<T>(_ transform: (Element) -> T) -> [T] where T: Equatable{
 		var result = [T]()
 		
 		for x in self {
@@ -18,7 +18,7 @@ extension Array {
 	}
 	
 	/// A flatmap function that iterates over and transforms each element of an array, removes any transformed values that are nil, but also removes any duplicates from the resulting array, so elements that match will not be added twice.
-	func dedupFlatMap<T: Equatable>(_ transform: (Element) throws -> T?) rethrows -> [T] {
+	func dedupFlatMap<T>(_ transform: (Element) throws -> T?) rethrows -> [T] where T: Equatable {
 		var result = [T]()
 		
 		for x in self {
@@ -31,7 +31,7 @@ extension Array {
 	}
 	
 	/// A map function that iterates over and transforms each element of an array but only returns the duplicates from the resulting array.
-	func dupMap<T where T: Comparable, T: Hashable>(_ transform: (Element) -> T) -> [T] {
+	func dupMap<T>(_ transform: (Element) -> T) -> [T] where T: Comparable, T: Hashable {
 		var nonDups = Set<T>()
 		var dups = Set<T>()
 		
