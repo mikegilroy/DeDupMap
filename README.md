@@ -9,13 +9,12 @@ extension Array {
   /// A map function that iterates over and transforms each element of an array but removes any duplicates from the resulting array, so elements that match will not be added twice.
   func dedupMap<T: Equatable>(_ transform: (Element) -> T) -> [T] {
     var result = [T]()
-
-	for x in self {
-	  if !result.contains(transform(x)) {
-	    result.append(transform(x))
-	  }
-	}
-	return result
+    for x in self {
+      if !result.contains(transform(x)) {
+        result.append(transform(x))
+      }
+    }
+    return result
   }
 
   /// A flatmap function that iterates over and transforms each element of an array, removes any transformed values that are nil, but also removes any duplicates from the resulting array, so elements that match will not be added twice.
